@@ -59,7 +59,7 @@ const DataCollection = sequelize.define('DataCollection', {
         field: 'damaged_part_other'
     },
     photo_url: {
-        type: DataTypes.TEXT,
+        type: DataTypes.ARRAY(DataTypes.TEXT),
         allowNull: true,
         field: 'photo_url'
     }

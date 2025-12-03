@@ -7,6 +7,11 @@ const DataCollection = sequelize.define('DataCollection', {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
     },
+    location: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        field: 'location'
+    },
     collector_name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -58,10 +63,20 @@ const DataCollection = sequelize.define('DataCollection', {
         allowNull: true,
         field: 'damaged_part_other'
     },
+    production_year: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        field: 'production_year'
+    },
     photo_url: {
         type: DataTypes.ARRAY(DataTypes.TEXT),
         allowNull: true,
         field: 'photo_url'
+    },
+    severity_level: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        field: 'severity_level'
     }
 }, {
     tableName: 'data_collections',

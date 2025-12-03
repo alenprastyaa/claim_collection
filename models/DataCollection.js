@@ -7,89 +7,51 @@ const DataCollection = sequelize.define('DataCollection', {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
     },
-    location: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        field: 'location'
+    estimasi_perbaikan: {
+        type: DataTypes.JSON,
+        allowNull: true
+        //name.locationm latitede,langitude
     },
     collector_name: {
         type: DataTypes.STRING,
-        allowNull: false,
         field: 'collector_name'
     },
-    brand_id: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        field: 'brand_id',
-        references: {
-            model: 'car_brands',
-            key: 'id'
-        }
-    },
-    model_id: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        field: 'model_id',
-        references: {
-            model: 'car_models',
-            key: 'id'
-        }
-    },
-    damage_type_id: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        field: 'damage_type_id',
-        references: {
-            model: 'damage_types',
-            key: 'id'
-        }
-    },
-    damage_type_other: {
+    brand_name: {
         type: DataTypes.STRING,
-        allowNull: true,
-        field: 'damage_type_other'
+        field: 'brand_name',
     },
-    damaged_part_id: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        field: 'damaged_part_id',
-        references: {
-            model: 'damaged_parts',
-            key: 'id'
-        }
-    },
-    damaged_part_other: {
+    model_name: {
         type: DataTypes.STRING,
-        allowNull: true,
-        field: 'damaged_part_other'
+        field: 'model_name',
+    },
+    damage_type: {
+        type: DataTypes.STRING,
+        field: 'damage_type',
+    },
+    damaged_part: {
+        type: DataTypes.STRING,
+        field: 'damaged_part',
     },
     production_year: {
         type: DataTypes.STRING,
         allowNull: true,
         field: 'production_year'
     },
-    photo_url: {
-        type: DataTypes.ARRAY(DataTypes.TEXT),
-        allowNull: true,
-        field: 'photo_url'
+
+    estimasi_perbaikan: {
+        type: DataTypes.ARRAY(DataTypes.JSON),
+        allowNull: true
     },
-    severity_level: {
+    total_estimasi: {
         type: DataTypes.STRING,
         allowNull: true,
-        field: 'severity_level'
+        field: 'total_estimasi'
     }
 }, {
     tableName: 'data_collections',
     timestamps: true,
-
     underscored: true
 });
 
-DataCollection.associate = (models) => {
-    DataCollection.belongsTo(models.CarBrand, { foreignKey: 'brand_id', as: 'brand' });
-    DataCollection.belongsTo(models.CarModel, { foreignKey: 'model_id', as: 'model' });
-    DataCollection.belongsTo(models.DamageType, { foreignKey: 'damage_type_id', as: 'damage_type' });
-    DataCollection.belongsTo(models.DamagedPart, { foreignKey: 'damaged_part_id', as: 'damaged_part' });
-};
 
 module.exports = DataCollection;

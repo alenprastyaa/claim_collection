@@ -34,16 +34,16 @@ app.use((err, req, res, next) => {
     });
 });
 
-// db.sync({ alter: true })
-//     .then(() => {
-//         console.log('📦 Database synced successfully');
-//         const PORT = process.env.PORT || 3600;
-//         app.listen(PORT, () => {
-//             console.log(`🚀 Server running on port ${PORT}`);
-//         });
-//     })
-//     .catch(err => {
-//         console.error(' Database sync error:', err);
-//     });
+db.sync({ force: true })
+    .then(() => {
+        console.log('📦 Database synced successfully');
+        const PORT = process.env.PORT || 3600;
+        app.listen(PORT, () => {
+            console.log(`🚀 Server running on port ${PORT}`);
+        });
+    })
+    .catch(err => {
+        console.error(' Database sync error:', err);
+    });
 
 module.exports = app;
